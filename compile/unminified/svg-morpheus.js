@@ -2,10 +2,10 @@
  * SVG Morpheus v0.3.2
  * https://github.com/alexk111/SVG-Morpheus
  *
- * Copyright (c) 2016 Alex Kaul
+ * Copyright (c) 2021 Alex Kaul
  * License: MIT
  *
- * Generated at Saturday, May 14th, 2016, 5:19:19 PM
+ * Generated at Monday, September 20th, 2021, 4:54:17 PM
  */
 (function() {
 'use strict';
@@ -82,7 +82,6 @@ easings['sine-in-out']=function (t) {
   return 1/2 * (1-Math.cos(Math.PI*t));
 };
 
-
 /*
  * Helper functions
  */
@@ -109,6 +108,10 @@ function styleNormCalc(styleNormFrom, styleNormTo, progress) {
       case 'stroke-width':
         styleNorm[i]=styleNormFrom[i]+(styleNormTo[i]-styleNormFrom[i])*progress;
         break;
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
+        styleNorm[i]=styleNormTo[i];
+        break;
     }
   }
   return styleNorm;
@@ -127,6 +130,8 @@ function styleNormToString(styleNorm) {
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
         style[i]=styleNorm[i];
         break;
     }
@@ -148,6 +153,8 @@ function styleToNorm(styleFrom, styleTo) {
         }
         break;
       case 'opacity':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
@@ -172,6 +179,8 @@ function styleToNorm(styleFrom, styleTo) {
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
         styleNorm[1][i]=styleTo[i];
         if(styleFrom[i]===undefined) {
           styleNorm[0][i]=1;
@@ -243,7 +252,6 @@ function clone(obj) {
 
   return obj;
 }
-
 
 
 /*
@@ -1021,7 +1029,6 @@ var getRGB = function (colour) {
   }
   return {r: -1, g: -1, b: -1, opacity: -1, error: 1};
 };
-
 function SVGMorpheus(element, options, callback) {
   if (!element) {
     throw new Error('SVGMorpheus > "element" is required');
@@ -1189,6 +1196,8 @@ SVGMorpheus.prototype._init=function(){
                     case 'stroke':
                     case 'stroke-opacity':
                     case 'stroke-width':
+                    case 'stroke-linecap':
+                    case 'stroke-linejoin':
                       item.attrs[name]=attrib.value;
                   }
                 }
@@ -1204,6 +1213,8 @@ SVGMorpheus.prototype._init=function(){
                   case 'stroke':
                   case 'stroke-opacity':
                   case 'stroke-width':
+                  case 'stroke-linecap':
+                  case 'stroke-linejoin':
                     item.style[styleName]=nodeItem.style[styleName];
                 }
               }

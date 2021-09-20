@@ -168,6 +168,8 @@ SVGMorpheus.prototype._init=function(){
                     case 'stroke':
                     case 'stroke-opacity':
                     case 'stroke-width':
+                    case 'stroke-linecap':
+                    case 'stroke-linejoin':
                       item.attrs[name]=attrib.value;
                   }
                 }
@@ -183,6 +185,8 @@ SVGMorpheus.prototype._init=function(){
                   case 'stroke':
                   case 'stroke-opacity':
                   case 'stroke-width':
+                  case 'stroke-linecap':
+                  case 'stroke-linejoin':
                     item.style[styleName]=nodeItem.style[styleName];
                 }
               }

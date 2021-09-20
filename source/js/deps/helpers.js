@@ -27,6 +27,10 @@ function styleNormCalc(styleNormFrom, styleNormTo, progress) {
       case 'stroke-width':
         styleNorm[i]=styleNormFrom[i]+(styleNormTo[i]-styleNormFrom[i])*progress;
         break;
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
+        styleNorm[i]=styleNormTo[i];
+        break;
     }
   }
   return styleNorm;
@@ -45,6 +49,8 @@ function styleNormToString(styleNorm) {
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
         style[i]=styleNorm[i];
         break;
     }
@@ -66,6 +72,8 @@ function styleToNorm(styleFrom, styleTo) {
         }
         break;
       case 'opacity':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
@@ -90,6 +98,8 @@ function styleToNorm(styleFrom, styleTo) {
       case 'fill-opacity':
       case 'stroke-opacity':
       case 'stroke-width':
+      case 'stroke-linecap':
+      case 'stroke-linejoin':
         styleNorm[1][i]=styleTo[i];
         if(styleFrom[i]===undefined) {
           styleNorm[0][i]=1;
